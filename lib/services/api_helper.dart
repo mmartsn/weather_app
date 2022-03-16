@@ -8,7 +8,7 @@ class ApiHelper {
   final double latitude;
   ApiHelper(this.longitude, this.latitude) {
     String url =
-        'https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=longitude&exclude=minutely&appid=$apiKey&units=metric';
+        'https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=$longitude&exclude=minutely&appid=$apiKey&units=metric';
     requestUri = Uri.parse(url);
   }
 
@@ -18,24 +18,17 @@ class ApiHelper {
       String data = response.body;
       return data; //jsonDecode(data);
     } else {
+      //print(response.statusCode.toString());
       return 'statusIsNot200';
-      //print(response.statusCode);
     }
   }
 }
 
-// void getweatherData() async {
-//   Location location = Location();
-//   await location.getCurrentLocation();
-//   double latitude = location.latitude;
-//   double longitude = location.longitude;
-//   ApiHelper apiHelper = ApiHelper(longitude, latitude);
 
-//   var weatherData = await apiHelper.getData();
 
   // double currentTemperature = weatherData['current']['temp'];
   // String cityName = weatherData['timezone'];
   // int currentCondition = weatherData['current']['weather'][0]['id'];
   // var hourly = weatherData['hourly'];
   // var daily = weatherData['daily'];
-//}
+

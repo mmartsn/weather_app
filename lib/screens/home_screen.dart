@@ -37,65 +37,91 @@ class HomeScreen extends StatelessWidget {
         constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Divider(height: 20.0.sR),
-              BlocBuilder<WeatherCubit, WeatherState>(
-                builder: (context, state) {
-                  if (state is WeatherLoaded) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            '${state.currentWeather.currentTemperature}°',
-                            style: Styles().todaysTemperatureTextStyle,
-                          ),
-                          Text(
-                            state.currentWeather.weatherIcon,
-                            style: Styles().weatherMessageStyle,
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                },
+              Expanded(
+                child: BlocBuilder<WeatherCubit, WeatherState>(
+                  builder: (context, state) {
+                    if (state is WeatherLoaded) {
+                      return Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          state.currentWeather.cityName,
+                          textAlign: TextAlign.center,
+                          style: Styles().weatherMessageStyle,
+                        ),
+                      );
+                    } else if (state is WeatherError) {
+                      return Center(child: Text(state.message));
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
               ),
-              Divider(height: 20.0.sR),
-              BlocBuilder<WeatherCubit, WeatherState>(
-                builder: (context, state) {
-                  if (state is WeatherLoaded) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Text(
-                        '${state.currentWeather.weatherMessage} in ${state.currentWeather.cityName}!',
-                        textAlign: TextAlign.center,
-                        style: Styles().weatherMessageStyle,
-                      ),
-                    );
-                  } else if (state is WeatherError) {
-                    return Center(child: Text(state.message));
-                  } else {
-                    return const Center(
-                      child: SpinKitDoubleBounce(
-                        color: Colors.white,
-                        size: 100.0,
-                      ),
-                    );
-                  }
-                },
+              Expanded(
+                child: BlocBuilder<WeatherCubit, WeatherState>(
+                  builder: (context, state) {
+                    if (state is WeatherLoaded) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              '${state.currentWeather.currentTemperature.round()}°',
+                              style: Styles().todaysTemperatureTextStyle,
+                            ),
+                            Text(
+                              state.currentWeather.weatherIcon,
+                              style: Styles().weatherMessageStyle,
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
               ),
-              BlocBuilder<DaysHoursCubit, DaysHoursState>(
-                builder: (context, state) {
-                  return (state is HoursState)
-                      ? const WeatherByHoursWidget()
-                      : const WeatherByDaysWidget();
-                },
+              Expanded(
+                flex: 2,
+                child: BlocBuilder<WeatherCubit, WeatherState>(
+                  builder: (context, state) {
+                    if (state is WeatherLoaded) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Text(
+                          state.currentWeather.weatherMessage,
+                          textAlign: TextAlign.center,
+                          style: Styles().weatherMessageStyle,
+                        ),
+                      );
+                    } else if (state is WeatherError) {
+                      return Center(child: Text(state.message));
+                    } else {
+                      return const Center(
+                        child: SpinKitDoubleBounce(
+                          color: Colors.white,
+                          size: 100.0,
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
+              Expanded(
+                child: BlocBuilder<DaysHoursCubit, DaysHoursState>(
+                  builder: (context, state) {
+                    return (state is HoursState)
+                        ? const WeatherByHoursWidget()
+                        : const WeatherByDaysWidget();
+                  },
+                ),
+              ),
+              Divider(height: 5.0.sR)
             ],
           ),
         ),

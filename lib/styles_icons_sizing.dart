@@ -45,9 +45,16 @@ class Styles {
     // backgroundColor: Colors.yellow
   );
   final TextStyle weatherMessageStyle = TextStyle(
-      fontSize: SizeData.realFontSize(30),
+      fontSize: SizeData.realFontSize(26),
       fontWeight: FontWeight.w300,
       color: Colors.white);
+  final TextStyle timePointStyle = TextStyle(
+      fontSize: SizeData.realFontSize(17), height: 1.13, color: Colors.white);
+  final TextStyle tempByHourStyle = TextStyle(
+      fontSize: SizeData.realFontSize(23),
+      height: 1.13,
+      color: Colors.white,
+      fontWeight: FontWeight.w600);
 
   final TextStyle pickModelStyle = TextStyle(
       fontSize: SizeData.realFontSize(20),
@@ -72,11 +79,7 @@ class Styles {
     color: Colors.black,
     //backgroundColor: Colors.white
   );
-  final TextStyle baseDescriptionStyle = TextStyle(
-      fontSize: SizeData.realFontSize(12),
-      height: 1.13,
-      color: Colors.black,
-      backgroundColor: Colors.white);
+
   final TextStyle clicableTextStyle = TextStyle(
     fontSize: SizeData.realFontSize(15),
     height: 1.1,

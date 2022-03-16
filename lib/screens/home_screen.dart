@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/widgets/widgets.dart';
 import 'package:weather_app/blocs/blocs.dart';
 
@@ -14,17 +15,21 @@ class HomeScreen extends StatelessWidget {
           const VerticalDivider(width: 3),
           ArchiveActionPopup(onSelected: (choice) async {
             if (choice == WeatherAction.days) {
-              //await widget.storage.uploadArchive(passw);
+              context.read<DaysHoursCubit>().switchToDaysWeather();
             } else if (choice == WeatherAction.hours) {
-              // var downloadRes =
-              //     await widget.storage.downloadArchive(pickedPath, passw);
-
+              context.read<DaysHoursCubit>().switchToHoursWeather();
             }
           }),
           const VerticalDivider(width: 4),
         ],
       ),
-      body: Container(),
+      body: BlocBuilder<DaysHoursCubit, DaysHoursState>(
+        builder: (context, state) {
+          return (state is HoursState)
+              ? WeatherByHoursWidget()
+              : WeatherByDaysWidget();
+        },
+      ),
     );
   }
 }

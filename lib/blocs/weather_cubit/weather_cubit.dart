@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_app/model/weather_model.dart';
+import 'package:weather_app/model/model.dart';
 import 'package:weather_app/weather_repository.dart';
 
 part 'weather_state.dart';
@@ -17,7 +17,10 @@ class WeatherCubit extends Cubit<WeatherState> {
       emit(
           const WeatherError("Couldn't fetch weather. Is the device online? "));
     } else {
-      emit(WeatherLoaded(weatherData));
+      CurrentWeather _currentWeather = CurrentWeather(weatherData: weatherData);
+      HoursWeather _hoursWeather = HoursWeather(weatherData: weatherData);
+      DaysWeather _daysWeather = DaysWeather(weatherData: weatherData);
+      emit(WeatherLoaded(_currentWeather, _hoursWeather, _daysWeather));
     }
   }
 }

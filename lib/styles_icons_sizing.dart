@@ -64,8 +64,7 @@ class Styles {
       fontSize: SizeData.realFontSize(20),
       color: Colors.blue,
       fontWeight: FontWeight.bold);
-  final TextStyle pickDescriptStyle =
-      TextStyle(fontSize: SizeData.realFontSize(12), color: Colors.black);
+
   final TextStyle atachSelectStyle = TextStyle(
       fontSize: SizeData.realFontSize(19),
       fontWeight: FontWeight.w600,
@@ -84,13 +83,6 @@ class Styles {
     //backgroundColor: Colors.white
   );
 
-  final TextStyle clicableTextStyle = TextStyle(
-    fontSize: SizeData.realFontSize(15),
-    height: 1.1,
-    fontWeight: FontWeight.w600,
-    color: Colors.blue,
-    //backgroundColor: Colors.white
-  );
   final TextStyle menuBaseStyle = TextStyle(
       fontSize: SizeData.realFontSize(17),
       fontWeight: FontWeight.w600,
@@ -114,10 +106,4 @@ class Styles {
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
-  final TextStyle editDescriptionStyle = TextStyle(
-      inherit: false, fontSize: SizeData.realFontSize(13), color: Colors.black);
-  final TextStyle editrAboutStyle = TextStyle(
-      fontSize: SizeData.realFontSize(17),
-      fontWeight: FontWeight.w600,
-      color: Colors.black);
 }

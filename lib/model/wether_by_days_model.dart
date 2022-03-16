@@ -8,6 +8,7 @@ class DaysWeather {
   late final double dayTemperature;
   late final double nightTemperature;
   late final int currentCondition;
+  late final double windSpeed;
   late final String weatherIcon;
   late final String weatherMessage;
 
@@ -15,11 +16,12 @@ class DaysWeather {
     timePoint = DateTime.fromMillisecondsSinceEpoch(
             weatherData['daily'][numberInList]['dt'] * 1000)
         .toString()
-        .substring(0, 16);
+        .substring(2, 10);
     dayTemperature = weatherData['daily'][numberInList]['temp']['day'];
     nightTemperature = weatherData['daily'][numberInList]['temp']['night'];
     cityName = weatherData['timezone'];
     currentCondition = weatherData['daily'][numberInList]['weather'][0]['id'];
+    windSpeed = weatherData['daily'][numberInList]['wind_speed'];
     var weatherIcons = WeatherIcons();
     weatherIcon = weatherIcons.getWeatherIcon(currentCondition);
     weatherMessage = weatherIcons.getMessage(dayTemperature.toInt());
@@ -40,6 +42,7 @@ class DaysWeather {
       cityName.hashCode ^
       dayTemperature.hashCode ^
       currentCondition.hashCode ^
+      windSpeed.hashCode ^
       weatherIcon.hashCode ^
       numberInList.hashCode ^
       weatherMessage.hashCode;

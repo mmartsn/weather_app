@@ -4,8 +4,8 @@ import 'package:weather_app/styles_icons_sizing.dart';
 
 enum WeatherAction { days, hours }
 
-class ArchiveActionPopup extends StatelessWidget {
-  const ArchiveActionPopup({
+class WeatherPopup extends StatelessWidget {
+  const WeatherPopup({
     Key? key,
     required this.onSelected,
   }) : super(key: key);
@@ -18,9 +18,9 @@ class ArchiveActionPopup extends StatelessWidget {
       elevation: 30,
       color: Colors.blueGrey,
       icon: Icon(Icons.settings,
-          size: 20.sR,
+          size: 28.sR,
           color: Colors.white,
-          semanticLabel: "weather forcast format menu"),
+          semanticLabel: "weather forecast format menu"),
       itemBuilder: (BuildContext context) {
         return WeatherAction.values.map((choice) {
           return PopupMenuItem<WeatherAction>(

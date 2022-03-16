@@ -12,10 +12,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather'),
+        title: Text(etxt.weather),
         actions: <Widget>[
           const VerticalDivider(width: 3),
-          ArchiveActionPopup(onSelected: (choice) async {
+          WeatherPopup(onSelected: (choice) async {
             if (choice == WeatherAction.days) {
               context.read<DaysHoursCubit>().switchToDaysWeather();
             } else if (choice == WeatherAction.hours) {

@@ -20,7 +20,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     } else {
       CurrentWeather _currentWeather = CurrentWeather(weatherData: weatherData);
       final _hoursWeatherList = List<HoursWeather>.generate(
-          12,
+          24,
           (index) =>
               HoursWeather(weatherData: weatherData, numberInList: index));
       final _daysWeatherList = List<DaysWeather>.generate(

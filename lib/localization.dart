@@ -10,18 +10,23 @@ class KeepLocalization {
             ? 'uk'
             : 'en';
   }
+  String get weather => locale == 'uk'
+      ? ("Погода")
+      : locale == 'ru'
+          ? ('Погода')
+          : ('Weather');
 
   String get daysWeather => locale == 'uk'
-      ? ("Погода на п'ять днів")
+      ? ("Погода на 8 днів")
       : locale == 'ru'
-          ? ('Погода на пять дней')
-          : ('Weather for five days');
+          ? ('Погода на 8 дней')
+          : ('Weather for 8 days');
 
   String get hoursWeather => locale == 'uk'
-      ? ("погода сьогодні")
+      ? ("погода на 24 години")
       : locale == 'ru'
-          ? ('погода сегодня')
-          : ('weather today');
+          ? ('погода на 24 часа')
+          : ('weather for 24 hours');
 
   String get cancelText => locale == 'uk'
       ? ('Скасувати')

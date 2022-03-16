@@ -14,7 +14,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(etxt.weather),
         actions: <Widget>[
-          const VerticalDivider(width: 3),
+          IconButton(
+              onPressed: () async {
+                await context.read<WeatherCubit>().getWeather();
+              },
+              icon: Icon(Icons.refresh, color: Colors.white, size: 28.0.sR)),
           WeatherPopup(onSelected: (choice) async {
             if (choice == WeatherAction.days) {
               context.read<DaysHoursCubit>().switchToDaysWeather();

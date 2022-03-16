@@ -12,13 +12,13 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.blueGrey, // navigation bar color
-    statusBarColor: Colors.blueGrey, // status bar color
-    statusBarIconBrightness: Brightness.light, // status bar icon color
-    systemNavigationBarIconBrightness:
-        Brightness.light, // color of navigation controls
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   systemNavigationBarColor: Colors.blueGrey, // navigation bar color
+  //   statusBarColor: Colors.blueGrey, // status bar color
+  //   statusBarIconBrightness: Brightness.light, // status bar icon color
+  //   systemNavigationBarIconBrightness:
+  //       Brightness.light, // color of navigation controls
+  // ));
   FlutterNativeSplash.removeAfter(initialization);
   BlocOverrides.runZoned(
     () => runApp(BlocProvider(

@@ -41,75 +41,57 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: BlocBuilder<WeatherCubit, WeatherState>(
-                  builder: (context, state) {
-                    if (state is WeatherLoaded) {
-                      return Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          state.currentWeather.cityName,
-                          textAlign: TextAlign.center,
-                          style: Styles().weatherMessageStyle,
-                        ),
-                      );
-                    } else if (state is WeatherError) {
-                      return Center(child: Text(state.message));
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
-                ),
-              ),
-              Expanded(
-                child: BlocBuilder<WeatherCubit, WeatherState>(
-                  builder: (context, state) {
-                    if (state is WeatherLoaded) {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              '${state.currentWeather.currentTemperature.round()}°',
-                              style: Styles().todaysTemperatureTextStyle,
+                flex: 2,
+                child: SizedBox(
+                  child: BlocBuilder<WeatherCubit, WeatherState>(
+                    builder: (context, state) {
+                      if (state is WeatherLoaded) {
+                        return Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              state.currentWeather.cityName,
+                              textAlign: TextAlign.center,
+                              style: Styles().cityStyle,
                             ),
-                            Text(
-                              state.currentWeather.weatherIcon,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  '${state.currentWeather.currentTemperature.round()}°',
+                                  style: Styles().todaysTemperatureTextStyle,
+                                ),
+                                Text(
+                                  state.currentWeather.weatherIcon,
+                                  style: Styles().weatherMessageStyle,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              state.currentWeather.weatherMessage,
+                              textAlign: TextAlign.center,
                               style: Styles().weatherMessageStyle,
                             ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: BlocBuilder<WeatherCubit, WeatherState>(
-                  builder: (context, state) {
-                    if (state is WeatherLoaded) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Text(
-                          state.currentWeather.weatherMessage,
-                          textAlign: TextAlign.center,
-                          style: Styles().weatherMessageStyle,
-                        ),
-                      );
-                    } else if (state is WeatherError) {
-                      return Center(child: Text(state.message));
-                    } else {
-                      return const Center(
-                        child: SpinKitDoubleBounce(
-                          color: Colors.white,
-                          size: 100.0,
-                        ),
-                      );
-                    }
-                  },
+                          )
+                        ]);
+                      } else if (state is WeatherError) {
+                        return Center(child: Text(state.message));
+                      } else {
+                        return const Center(
+                          child: SpinKitDoubleBounce(
+                            color: Colors.white,
+                            size: 100.0,
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
               ),
               Expanded(

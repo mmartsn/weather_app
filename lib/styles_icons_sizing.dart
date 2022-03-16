@@ -38,8 +38,12 @@ class Styles {
 
   Styles._internal();
 
+  final TextStyle cityStyle = TextStyle(
+      fontSize: SizeData.realFontSize(30),
+      fontWeight: FontWeight.w400,
+      color: Colors.white);
   final TextStyle todaysTemperatureTextStyle = TextStyle(
-    fontSize: SizeData.realFontSize(50),
+    fontSize: SizeData.realFontSize(60),
     fontWeight: FontWeight.w400,
     color: Colors.white,
     // backgroundColor: Colors.yellow

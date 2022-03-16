@@ -6,18 +6,25 @@ class WeatherByHoursWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 30.0, right: 30),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-              padding: EdgeInsets.all(28.sR),
-              child: Icon(Icons.cloud, size: 80.sR)),
-          Text('-20', style: Styles().todaysTemperatureTextStyle),
-        ],
-      ),
-    );
+    return Container(
+        height: 100.sR,
+        decoration: const BoxDecoration(
+            border: Border(
+                top: BorderSide(color: Colors.white),
+                bottom: BorderSide(color: Colors.white))),
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: ['1', '2', '3', '4', '5', '6'].length,
+            itemBuilder: (context, index) {
+              return Container(
+                  width: 50.sR,
+                  child: Card(child: Center(child: Text('$index'))));
+            }));
+
+    // Padding(
+    //   padding: const EdgeInsets.only(left: 10.0, right: 10),
+    //   child:
+
+    // );
   }
 }

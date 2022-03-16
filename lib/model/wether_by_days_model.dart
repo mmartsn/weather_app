@@ -2,34 +2,45 @@ import 'package:weather_app/services/weather_icons.dart';
 
 class DaysWeather {
   final dynamic weatherData;
+  final int numberInList;
+  late final String timePoint;
   late final String cityName;
-  late final double currentTemperature;
+  late final double dayTemperature;
+  late final double nightTemperature;
   late final int currentCondition;
   late final String weatherIcon;
   late final String weatherMessage;
 
-  DaysWeather({required this.weatherData}) {
-    currentTemperature = weatherData['current']['temp'];
+  DaysWeather({required this.weatherData, required this.numberInList}) {
+    timePoint = DateTime.fromMillisecondsSinceEpoch(
+            weatherData['daily'][numberInList]['dt'] * 1000)
+        .toString()
+        .substring(0, 16);
+    dayTemperature = weatherData['daily'][numberInList]['temp']['day'];
+    nightTemperature = weatherData['daily'][numberInList]['temp']['night'];
     cityName = weatherData['timezone'];
-    currentCondition = weatherData['current']['weather'][0]['id'];
+    currentCondition = weatherData['daily'][numberInList]['weather'][0]['id'];
     var weatherIcons = WeatherIcons();
     weatherIcon = weatherIcons.getWeatherIcon(currentCondition);
-    weatherMessage = weatherIcons.getMessage(currentTemperature.toInt());
+    weatherMessage = weatherIcons.getMessage(dayTemperature.toInt());
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is DaysWeather && other.weatherData == weatherData;
+    return other is DaysWeather &&
+        other.weatherData == weatherData &&
+        other.numberInList == numberInList;
   }
 
   @override
   int get hashCode =>
       weatherData.hashCode ^
       cityName.hashCode ^
-      currentTemperature.hashCode ^
+      dayTemperature.hashCode ^
       currentCondition.hashCode ^
       weatherIcon.hashCode ^
+      numberInList.hashCode ^
       weatherMessage.hashCode;
 }

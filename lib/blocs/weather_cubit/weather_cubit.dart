@@ -8,7 +8,8 @@ part 'weather_state.dart';
 class WeatherCubit extends Cubit<WeatherState> {
   final WeatherRepository weatherRepository;
 
-  WeatherCubit({required this.weatherRepository}) : super(WeatherInitial());
+  WeatherCubit({required this.weatherRepository})
+      : super(const WeatherInitial());
 
   Future<void> getWeather() async {
     emit(const WeatherLoading());
@@ -18,18 +19,15 @@ class WeatherCubit extends Cubit<WeatherState> {
           const WeatherError("Couldn't fetch weather. Is the device online? "));
     } else {
       CurrentWeather _currentWeather = CurrentWeather(weatherData: weatherData);
-      HoursWeather _hoursWeather = HoursWeather(weatherData: weatherData);
-      DaysWeather _daysWeather = DaysWeather(weatherData: weatherData);
-      emit(WeatherLoaded(_currentWeather, _hoursWeather, _daysWeather));
+      final _hoursWeatherList = List<HoursWeather>.generate(
+          12,
+          (index) =>
+              HoursWeather(weatherData: weatherData, numberInList: index));
+      final _daysWeatherList = List<DaysWeather>.generate(
+          8,
+          (index) =>
+              DaysWeather(weatherData: weatherData, numberInList: index));
+      emit(WeatherLoaded(_currentWeather, _hoursWeatherList, _daysWeatherList));
     }
   }
 }
-
-
-
-  // double currentTemperature = weatherData['current']['temp'];
-  // String cityName = weatherData['timezone'];
-  // int currentCondition = weatherData['current']['weather'][0]['id'];
-  // var hourly = weatherData['hourly'];
-  // var daily = weatherData['daily'];
-

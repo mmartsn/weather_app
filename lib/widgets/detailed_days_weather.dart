@@ -13,7 +13,8 @@ Future<void> detailedDaysWeatherAlert(BuildContext context, int index) async {
     ),
     titlePadding: EdgeInsets.zero,
     title: Container(
-      padding: EdgeInsets.only(left: 20.sR, right: 20.sR, top: 20.sR),
+      padding:
+          EdgeInsets.only(left: 10.sR, right: 2.sR, top: 10.sR, bottom: 10.sR),
       constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.65, maxWidth: 60.w),
       child: SingleChildScrollView(
@@ -22,8 +23,8 @@ Future<void> detailedDaysWeatherAlert(BuildContext context, int index) async {
               (context.read<WeatherCubit>().state as WeatherLoaded)
                   .daysWeatherList[index];
           return Container(
-              height: 200.sR,
-              width: 100.sR,
+              height: 250.sR,
+              //width: 100.sR,
               child: Card(
                   child: Center(
                       child: Column(
@@ -37,8 +38,8 @@ Future<void> detailedDaysWeatherAlert(BuildContext context, int index) async {
                       'Night ${daysWeather.nightTemperature.round().toString()}° / Day ${daysWeather.dayTemperature.round().toString()}°',
                       style: Styles().tempByHourStyle),
                   Text(
-                      ' ${daysWeather.weatherIcon}   Wind speed - ${daysWeather.windSpeed.toString()}',
-                      style: Styles().timePointStyle),
+                      '${daysWeather.weatherIcon}   Wind - ${daysWeather.windSpeed.toString()}',
+                      style: Styles().tempByHourStyle),
                 ],
               ))));
         }),

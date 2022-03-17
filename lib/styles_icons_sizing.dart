@@ -53,7 +53,10 @@ class Styles {
       fontWeight: FontWeight.w300,
       color: Colors.white);
   final TextStyle timePointStyle = TextStyle(
-      fontSize: SizeData.realFontSize(17), height: 1.13, color: Colors.white);
+      fontFamily: 'Roboto',
+      fontSize: SizeData.realFontSize(15),
+      //height: 1.13,
+      color: Colors.white);
   final TextStyle tempByHourStyle = TextStyle(
       fontSize: SizeData.realFontSize(23),
       height: 1.13,

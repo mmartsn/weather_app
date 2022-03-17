@@ -1,16 +1,9 @@
-# weather_app
+<h1><b>weather_app</b></h1>
 
-A new Flutter project.
+Flutter project.  Mobile Application for retrieving actual weather information in from public API openweathermap.org. User's location (city) is determined through geolocation.  The assembly weather result is presented in two different format: in addition to current weather displayed user can choose between 8-days forecast or 24-hours forecast by hours. Also widget with detailed weather info for each day is available through onTap. Localization en/ru/ukr, stable UI for iOS/Android and different gadget's size, bloc architecture, splash-screen, local storage for user's last weather are implemented.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<h2><b>Project launching</b></h2>
 
-A few resources to get you started if this is your first Flutter project:
+This Flutter project is ready to launch. Just clone or download it. Open it in Flutter.  Connect Android/iOS Mobile phone and then "flutter run" - for launching.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
